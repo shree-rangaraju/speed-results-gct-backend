@@ -25,3 +25,4 @@ Start the server
   node index.js
 ```
 
+In case of port number issues, change port number in client as well as server
