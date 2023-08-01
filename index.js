@@ -3,7 +3,6 @@ const multer = require("multer");
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 const archiver = require("archiver");
-const util = require("util");
 const path = require("path");
 const cors = require("cors");
 
@@ -14,13 +13,11 @@ const upload = multer({ dest: "uploads/" });
 app.use("/uploads", express.static("uploads"));
 app.use(cors());
 
-const readFileAsync = util.promisify(fs.readFile);
-
 app.post("/upload", upload.single("rollNumbers"), async (req, res) => {
   const { path } = req.file;
 
   try {
-    const rollNumbersData = await readFileAsync(path, "utf8");
+    const rollNumbersData = await fs.promises.readFile(path, "utf8");
     const rollNumberArray = rollNumbersData
       .split(/\r?\n/)
       .filter((num) => num.trim() !== "");
