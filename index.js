@@ -21,7 +21,7 @@ app.post("/upload", upload.single("rollNumbers"), async (req, res) => {
     const rollNumberArray = rollNumbersData
       .split(/\r?\n/)
       .filter((num) => num.trim() !== "");
-    const base_url = "https://gct.ac.in/jnvjkfbvhbvdfbsakjdfhdf";
+    const base_url = "https://gct.ac.in/Results";
     const folderPath = `./results/${Date.now()}`;
 
     if (!fs.existsSync(folderPath)) {
